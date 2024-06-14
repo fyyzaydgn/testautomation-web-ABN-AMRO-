@@ -1,0 +1,48 @@
+{
+  "name": "testautomation-web",
+  "version": "1.0.0",
+  "description": "We are looking for Automation Engineers that have the mindset \"only the sky is the limit\" and \"automation doesn't stop at testing, it's just a beginning!\" ;)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "all-scenarios-headless-chrome": "cypress run --headless --browser chrome --spec 'cypress/e2e/**/*.{feature,cy.js}'",
+    "all-scenarios-headed-chrome" : "cypress run --headed --browser chrome --spec 'cypress/e2e/**/*.{feature,cy.js}'",
+
+    "regression-headed-chrome" : "cypress run -e TAGS='@regression' --headed --browser chrome",
+    "regression-headed-firefox" : "cypress run -e TAGS='@regression' --headed --browser firefox",
+    "regression-headed-edge" : "cypress run -e TAGS='@regression' --headed --browser edge",
+    "regression-headed-electron" : "cypress run -e TAGS='@regression' --headed --browser electron",
+    "regression-headed-in-all-browsers": "npm run regression-headed-chrome && npm run regression-headed-firefox && npm run regression-headed-edge && npm run regression-headed-electron",
+
+    "regression-headless-chrome": "cypress run -e TAGS='@regression' --headless --browser chrome",
+    "regression-headless-firefox": "cypress run -e TAGS='@regression' --headless --browser firefox",
+    "regression-headless-edge": "cypress run -e TAGS='@regression' --headless --browser edge",
+    "regression-headless-electron": "cypress run -e TAGS='@regression' --headless --browser electron",
+    "regression-headless-in-all-browsers": "npm run regression-headless-chrome && npm run regression-headless-firefox && npm run regression-headless-edge && npm run regression-headless-electron",
+
+    "smoke-headed-chrome": "cypress run -e TAGS='@smoke' --headed --browser chrome",
+    "smoke-headless-chrome": "cypress run -e TAGS='@smoke' --headless --browser chrome"
+
+
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.1",
+    "cypress": "^13.11.0"
+  },
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^20.0.6"
+  },
+  "cypress-cucumber-preprocessor": {
+    "html":{
+      "enabled": true,
+      "output": "cypress/reports/cucumber-html/cucumber-report.html"
+    },
+    "messsages":{
+      "enabled" : true,
+      "output" : "cypress/reports/cucumber-ndjson/cucumber-report.ndjson"
+    }
+  }
+}
